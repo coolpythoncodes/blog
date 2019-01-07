@@ -1,5 +1,5 @@
 from django.views.generic import DetailView,ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView,UpdateView
 
 from .models import BlogPost
 
@@ -18,3 +18,8 @@ class BlogCreateView(CreateView):
     model = BlogPost
     fields = "__all__"
     template_name = "post_new.html"
+
+class BlogUpdateView(UpdateView):
+    model = BlogPost
+    fields = ['title','body']
+    template_name = "post_update.html"

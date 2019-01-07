@@ -14,7 +14,7 @@
             {{object.body|linebreaks}}
         </div>
         <div class="card-footer text-center text-muted">
-            <a href="">Edit</a> | <a href="">Delete</a>
+            <a href="{% url 'post_update' object.pk %}">Edit</a> | <a href="">Delete</a>
         </div>
     </div>
 
