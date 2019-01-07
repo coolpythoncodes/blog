@@ -18,10 +18,15 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'home' %}">Home</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link right" href="{% url 'post_new' %}"> New Blog Post</a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link right" href="{% url 'logout' %}"> Logout</a>
+                    </li>
+                    {% endif %}
+                                        
                   </ul>
                 </div>
                 <div class="card-body">
@@ -30,7 +35,9 @@
                   
                 </div>
               </div>
-    
+    {% if user.is_authenticated %}
+    <p>Welcome <strong>{{user.username}}</strong></p>
+    {% endif %}
    {%block content%}
    
    {%endblock content%}

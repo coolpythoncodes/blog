@@ -13,9 +13,13 @@
         <div class="card-body">
             {{object.body|linebreaks}}
         </div>
-        <div class="card-footer text-center text-muted">
-            <a href="{% url 'post_update' object.pk %}">Edit</a> | <a href="{% url 'post_delete' object.pk %}">Delete</a>
-        </div>
+        {% if user.is_authenticated %}
+            <div class="card-footer text-center text-muted">
+                <a href="{% url 'post_update' object.pk %}">Edit</a> | <a href="{% url 'post_delete' object.pk %}">Delete</a>
+            </div>
+        {% endif %}
+        
     </div>
 
 {%endblock content%}
+

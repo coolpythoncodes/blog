@@ -14,9 +14,12 @@
                 {{post.body|linebreaks}}
                 <a href="{% url 'post_detail' post.pk %}">Read More...</a>
             </div>
+            {% if user.is_authenticated %}
             <div class="card-footer text-center text-muted">
                 <a href="{% url 'post_update' post.pk %}">Edit</a> | <a href="{% url 'post_delete' post.pk %}">Delete</a>
             </div>
+            {% endif %}
+            
         </div>
         
     {% endfor %}

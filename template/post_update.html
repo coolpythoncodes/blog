@@ -4,15 +4,18 @@
 
 <!-- Blog Content-->
 {%block content%}
+{% if user.is_authenticated %}
 <div class="container">
-        <h1>Edit Post</h1>
+    <h1>Edit Post</h1>
 
-        <form method="post">{%csrf_token%}
-            {{form.as_p}}
-            <button class="btn btn-success ml-2" type="submit">Save</button>
-        
-        </form>
+    <form method="post">{%csrf_token%}
+        {{form.as_p}}
+        <button class="btn btn-success ml-2" type="submit">Save</button>
+    
+    </form>
 </div>
-
+{% else %}
+<p>You don't have authorization to this page</p>
+{% endif %}
 
 {%endblock content%}
