@@ -5,11 +5,13 @@
 <!-- Blog Content-->
 {%block content%}
 
-<h2>Login</h2>
-<form method="post">{% csrf_token %}
-    {{form.as_p}}
-    <button class="btn btn-success ml-2" type="submit">Login</button>
-
-</form>
+<div class="container">
+        <h2>Login</h2>
+        <form method="post">{% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-success ml-2" type="submit">Login</button>
+        
+        </form>
+</div>
 
 {%endblock content%}
