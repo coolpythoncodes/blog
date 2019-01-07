@@ -4,11 +4,15 @@
 
 <!-- Blog Content-->
 {%block content%}
+<div class="container">
+        <h1>New Blog Post</h1>
 
-<form method="post">{%csrf_token%}
-    {{form.as_p}}
-    <button class="btn btn-success ml-2" type="submit">Save</button>
+        <form method="post">{%csrf_token%}
+            {{form.as_p}}
+            <button class="btn btn-success ml-2" type="submit">Save</button>
+        
+        </form>
+</div>
 
-</form>
 
 {%endblock content%}
