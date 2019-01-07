@@ -1,23 +1,21 @@
 {% extends "base.html" %}
 <!--title blog -->
-{%block title%}{{post.title}}{%endblock%}
+{%block title%}{{object.title}}{%endblock%}
 
 <!-- Blog Content-->
 {%block content%}
-   {% for post in object_list %}
-        <div class="card">
-            <div class="card-header">
-                <span class="font-weight-bold"><a href="">{{ post.title }}</a></span> &middot;
-                <span class="text-muted">by {{post.author}} | {{post.date}}</span>
-            </div>
-            <div class="card-body">
-                {{post.body|linebreaks}}
-            </div>
-            <div class="card-footer text-center text-muted">
-                <a href="">Edit</a> | <a href="">Delete</a>
-            </div>
+   
+    <div class="card">
+        <div class="card-header">
+            <span class="font-weight-bold"><a href="">{{ object.title }}</a></span> &middot;
+            <span class="text-muted">by {{object.author}} | {{object.date}}</span>
         </div>
-        
-    {% endfor %}
+        <div class="card-body">
+            {{object.body|linebreaks}}
+        </div>
+        <div class="card-footer text-center text-muted">
+            <a href="">Edit</a> | <a href="">Delete</a>
+        </div>
+    </div>
 
 {%endblock content%}
