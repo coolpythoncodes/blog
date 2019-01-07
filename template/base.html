@@ -11,12 +11,28 @@
     <title>{%block title%}Python blog{%endblock%}</title>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
+
+        <div class="card text-center">
+                <div class="card-header">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                    </li>
+                    
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title">Python Quiz Blog</h1>
+                  <p class="card-text">Keep your knowledge of Python sharp by participating in our quiz.</p>
+                  
+                </div>
+              </div>
+    <!-- <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-4"><a href="">Python Quiz Blog</a></h1>
                 <p class="lead">Keep your knowledge of Python sharp by participating in our quiz.</p>
             </div>
-    </div>
+    </div> -->
    {%block content%}
    
    {%endblock content%}
