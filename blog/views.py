@@ -1,4 +1,5 @@
 from django.views.generic import DetailView,ListView
+from django.views.generic.edit import CreateView
 
 from .models import BlogPost
 
@@ -11,3 +12,9 @@ class BlogListView(ListView):
 class BlogDetailView(DetailView):
     model = BlogPost
     template_name = "post_detail.html"
+
+
+class BlogCreateView(CreateView):
+    model = BlogPost
+    fields = "__all__"
+    template_name = "post_new.html"
