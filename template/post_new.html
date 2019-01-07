@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+<!--title blog page-->
+{%block title%}New Blog Post{%endblock%}
+
+<!-- Blog Content-->
+{%block content%}
+
+<form method="post">{%csrf_token%}
+    {{form.as_p}}
+    <button class="btn btn-success ml-2" type="submit">Save</button>
+
+</form>
+
+{%endblock content%}
