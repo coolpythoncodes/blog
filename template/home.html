@@ -12,6 +12,7 @@
             </div>
             <div class="card-body">
                 {{post.body|linebreaks}}
+                <a href="{% url 'post_detail' post.pk %}">Read More...</a>
             </div>
             <div class="card-footer text-center text-muted">
                 <a href="">Edit</a> | <a href="">Delete</a>
