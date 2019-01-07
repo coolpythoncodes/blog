@@ -6,7 +6,7 @@
 {%block content%}
 
     <div class="container">
-        <h1>Delete Post</h1>
+        <h2>Delete Post</h2>
         <form method="post">{% csrf_token %}
             <p> Are you sure you want to delete "{{object.title}}"</p>
             <button class="btn btn-danger ml-2" type="submit">Confirm</button>

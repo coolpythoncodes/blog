@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+<!--title blog -->
+{%block title%}Login{%endblock%}
+
+<!-- Blog Content-->
+{%block content%}
+
+<h2>Login</h2>
+<form method="post">{% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-success ml-2" type="submit">Login</button>
+
+</form>
+
+{%endblock content%}
