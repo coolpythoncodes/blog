@@ -7,6 +7,7 @@ from .models import BlogPost
 # Create your views here.
 
 class BlogListView(ListView):
+    queryset = BlogPost.published.all()  # retrieves only published posts
     model = BlogPost
     template_name = "home.html"
 
