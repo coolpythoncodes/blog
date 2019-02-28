@@ -5,6 +5,10 @@ from django.urls import reverse
 
 
 class BlogPost(models.Model):
+    POST_STATUS_CHOICES = (
+        ('Publish','Publish'),
+        ('Draft', 'Draft'),
+    )
     title = models.CharField(max_length=200)
     author = models.ForeignKey('auth.User',on_delete=models.CASCADE,)
     body = models.TextField()
