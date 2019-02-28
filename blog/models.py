@@ -4,6 +4,10 @@ from django.urls import reverse
 # Create your models here.
 
 
+class PublishedPostManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status="Publish")
+
 class BlogPost(models.Model):
     POST_STATUS_CHOICES = (
         ('Publish','Publish'),
