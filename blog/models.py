@@ -17,4 +17,7 @@ class BlogPost(models.Model):
     def get_absolute_url(self):
         return reverse('post_detail',args=[str(self.id)])
 
+    class Meta:
+        ordering = ('-date',) # show posts from latest published to the first published
+
 
