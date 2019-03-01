@@ -5,6 +5,7 @@ from .models import BlogPost, Comment
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ('title','author','date','status')
+    list_filter = ('status',)
 
 @admin.register(Comment)
 

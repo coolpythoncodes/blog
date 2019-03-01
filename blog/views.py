@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.shortcuts import render, get_object_or_404
 
 from .models import BlogPost
 
@@ -12,10 +13,13 @@ class BlogListView(ListView):
     model = BlogPost
     template_name = "home.html"
 
+def post_detail(request):
+    post = get_object_or_404(BlogPost,status="published")
+    return render(request,"post_detail.html",{"post":post})
 
-class BlogDetailView(DetailView):
-    model = BlogPost
-    template_name = "post_detail.html"
+# class BlogDetailView(DetailView):
+#     model = BlogPost
+#     template_name = "post_detail.html"
 
 
 class BlogCreateView(CreateView):
