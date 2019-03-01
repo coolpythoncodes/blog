@@ -17,9 +17,31 @@ def post_detail(request):
     post = get_object_or_404(BlogPost,status="published")
     return render(request,"post_detail.html",{"post":post})
 
-# class BlogDetailView(DetailView):
-#     model = BlogPost
-#     template_name = "post_detail.html"
+def post_detail(request, post_id):
+    post = get_object_or_404(BlogPost, pk=post_id)
+    # retrieves all comments in a particular blog post
+    comments = post.comments.all()
+    new_comment = None
+   
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the new comment
+            new_comment.post = post 
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    return render(
+        request, 
+        "post_detail.html", 
+        {
+            "post": post, 
+            "comment_form": comment_form, 
+            "comments": comments, 
+            "new_comment": new_comment
+        }
+        )
 
 
 class BlogCreateView(CreateView):
