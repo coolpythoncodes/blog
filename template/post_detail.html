@@ -1,25 +1,77 @@
 {% extends "base.html" %}
+
 <!--title blog -->
 {%block title%}{{post.title}}{%endblock%}
+{% block page_title %} {{post.title}} {% endblock page_title %}
 
 <!-- Blog Content-->
 {%block content%}
    
-    <div class="card">
-        <div class="card-header">
-            <span class="font-weight-bold"><a href="">{{ post.title }}</a></span> &middot;
-            <span class="text-muted">by {{post.author}} | {{post.date}}</span>
-        </div>
-        <div class="card-body">
-            {{post.body|linebreaks}}
-        </div>
+<div class="blog-post">
+    
+    <p class="blog-post-meta"> {{post.date}} by  {{post.author}} </p>
+    <p> {{post.body|linebreaks}} </p>
+    
+  </div><!-- /.blog-post -->
+
+        
+
         {% if user.is_authenticated %}
-            <div class="card-footer text-center text-muted">
-                <a href="{% url 'post_update' post.pk %}">Edit</a> | <a href="{% url 'post_delete' post.pk %}">Delete</a>
-            </div>
+
+            <nav class="blog-pagination">
+                <a class="btn btn-outline-primary" href="{% url 'post_delete' post.pk %}">Delete</a>
+                <a class="btn btn-outline-secondary" href="{% url 'post_update' post.pk %}" >Edit</a>
+            </nav>
+
+            
         {% endif %}
         
-    </div>
+        </div>
+
+    <div class='container'>
+
+        
+        {% if comments %}
+            
+            {% for comment in comments %}
+
+            <ul class="comment-section">
+
+                    <li class="comment user-comment">
+                        <div class="info">
+                            <p>{{ comment.name }}</p>
+                            <span> {{ comment.created|timesince }} ago </span>
+            </div>
+                        
+                        <p> {{ comment.body }} </p>
+                    </li>
+                
+                                    
+                    <!-- More comments -->
+                
+                    
+                
+                </ul>
+                
+            {% endfor %}
+                
+            
+        {% endif %}
+<!--             
+        
+        <li class="write-new">
+                
+                <form action="." method="post">
+                    {{ comment_form.as_p }}
+                </form>
+        
+            </li>       -->
+
+        
 
 {%endblock content%}
+
+{% block pagination %}
+
+{% endblock pagination %}
 
