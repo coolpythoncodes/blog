@@ -2,20 +2,23 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from .models import BlogPost
+from .forms import CommentForm
 
 # Create your views here.
 
 
-class BlogListView(ListView):
-    queryset = BlogPost.published.all()  # retrieves only published posts
-    model = BlogPost
-    template_name = "home.html"
+def post_list(request):
+    post_list = BlogPost.published.all() # retrieves only published posts
+    paginator = Paginator(post_list, 1)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request,"home.html",{"posts":posts})
 
-def post_detail(request):
-    post = get_object_or_404(BlogPost,status="published")
-    return render(request,"post_detail.html",{"post":post})
+
+
 
 def post_detail(request, post_id):
     post = get_object_or_404(BlogPost, pk=post_id)
@@ -60,3 +63,6 @@ class BlogDeleteView(DeleteView):
     model = BlogPost
     template_name = "post_delete.html"
     success_url = reverse_lazy('home')
+
+
+
