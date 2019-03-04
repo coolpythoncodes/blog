@@ -1,6 +1,11 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 <!--title blog page-->
 {%block title%}New Blog Post{%endblock%}
+
+{% block page_title %}
+
+{% endblock page_title %}
 
 <!-- Blog Content-->
 {%block content%}
@@ -10,7 +15,7 @@
     <h1>New Blog Post</h1>
 
     <form method="post">{%csrf_token%}
-        {{form.as_p}}
+        {{form|crispy}}
         <button class="btn btn-success ml-2" type="submit">Save</button>
     
     </form>
