@@ -12,27 +12,24 @@ from .forms import CommentForm
 
 def post_list(request):
     post_list = BlogPost.published.all() # retrieves only published posts
-    paginator = Paginator(post_list, 1)
+    paginator = Paginator(post_list, 2)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request,"home.html",{"posts":posts})
 
 
-
-
-def post_detail(request, post_id):
-    post = get_object_or_404(BlogPost, pk=post_id)
+def post_detail(request,post):
+    post = get_object_or_404(BlogPost, slug=post)
     # retrieves all comments in a particular blog post
     comments = post.comments.all()
-    new_comment = None
-   
+      
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
+            comments = comment_form.save(commit=False)
             # Assign the current post to the new comment
-            new_comment.post = post 
-            new_comment.save()
+            comments.post = post 
+            comments.save()
     else:
         comment_form = CommentForm()
     return render(
@@ -42,7 +39,7 @@ def post_detail(request, post_id):
             "post": post, 
             "comment_form": comment_form, 
             "comments": comments, 
-            "new_comment": new_comment
+            
         }
         )
 
