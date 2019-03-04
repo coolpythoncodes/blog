@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 <!--title blog -->
 {%block title%}{{post.title}}{%endblock%}
@@ -26,48 +27,42 @@
             
         {% endif %}
         
-    </div>
-
-    <div class='container'>
-
-        
-        {% if comments %}
-            
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Recent comments</h6>
             {% for comment in comments %}
-
-            <ul class="comment-section">
-
-                    <li class="comment user-comment">
-                        <div class="info">
-                            <p>{{ comment.name }}</p>
-                            <span> {{ comment.created|timesince }} ago </span>
-                        </div>
-                        
-                        <p> {{ comment.body }} </p>
-                    </li>
+            <div class="media text-muted pt-3">
                 
-                                    
-                    <!-- More comments -->
-                
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     
+                    <strong class="d-block text-gray-dark">{{ comment.name }} - {{ comment.created|timesince }} ago </strong>
+                    {{ comment.body }} 
+                </p>
+            </div>
+          {% endfor %}
                 
-                </ul>
-                
-            {% endfor %}
-                
+            </div>
+        
+<!-- Comment Form -->
             
-        {% endif %}
-<!--             
-        
-        <li class="write-new">
-                
-                <form action="." method="post">
-                    {{ comment_form.as_p }}
-                </form>
-        
-            </li>       -->
+            {% if new_comment %}
 
-    
+            <p>Thank you for your comment</p>
+            {% else %}
+
+            <div class="container">
+                <br>
+                <h6 class="border-bottom border-gray pb-2 mb-0">Leave a comment</h6>
+                <br>
+                <form action="." method="post">{% csrf_token %}
+                    {{comment_form|crispy}}
+                    <input class="btn btn-primary" type="submit" value="Comment">
+
+                </form>
+            </div>
+                
+            {% endif %}
+                
+         
 
 {%endblock content%}
 

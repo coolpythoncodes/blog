@@ -1,0 +1,16 @@
+<div class="p-4">
+    <!-- Recent Posts -->
+  <h4 class="font-italic">Recent Post</h4>
+  <ol class="list-unstyled mb-0">
+      
+      {% for post in recent_post %}
+
+        <li><a href="{{post.get_absolute_url}}"> {{post.title}} </a></li>
+        <br>
+        
+          
+      {% endfor %}
+          
+    
+  </ol>
+</div>

@@ -22,14 +22,15 @@ def post_detail(request,post):
     post = get_object_or_404(BlogPost, slug=post)
     # retrieves all comments in a particular blog post
     comments = post.comments.all()
+    new_comment = None
       
     if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
+        comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
-            comments = comment_form.save(commit=False)
+            new_comment = comment_form.save(commit=False)
             # Assign the current post to the new comment
-            comments.post = post 
-            comments.save()
+            new_comment.post = post 
+            new_comment.save()
     else:
         comment_form = CommentForm()
     return render(
@@ -38,6 +39,7 @@ def post_detail(request,post):
         {
             "post": post, 
             "comment_form": comment_form, 
+            "new_comment": new_comment,
             "comments": comments, 
             
         }
